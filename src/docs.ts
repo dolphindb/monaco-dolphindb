@@ -1,7 +1,7 @@
 import { keywords, constants } from 'dolphindb/language.js';
 
 import type * as Monaco from 'monaco-editor';
-import { LANGUAGE_ID } from './constant';
+import { LANGUAGE_ID } from './constant.js';
 
 const constants_lower = constants.map((constant) => constant.toLowerCase());
 

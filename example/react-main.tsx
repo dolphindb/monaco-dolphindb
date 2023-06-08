@@ -25,7 +25,7 @@ function App() {
       dolphinDBLanguageOptions={{
         docs: '/docs.zh.json',
       }}
-      beforeInit={beforeMonacoEditorInit}
+      beforeMonacoInit={beforeMonacoEditorInit}
       options={{
         acceptSuggestionOnEnter: 'on',
       }}
