@@ -1,0 +1,28 @@
+import { registerTokenizer, setColorMap } from './tokenizer.js';
+import { DocsAvailableValue, loadDocs, registerDocsRelatedLanguageProviders } from './docs.js';
+import type * as Monaco from 'monaco-editor';
+import { IRawTheme } from 'vscode-textmate';
+import { LANGUAGE_ID } from './constant.js';
+
+export interface RegisterDolphinDBLanguageOptions {
+  docs: DocsAvailableValue;
+  theme?: 'light' | 'dark' | IRawTheme;
+}
+
+export async function registerDolphinDBLanguage(monaco: typeof Monaco, options: RegisterDolphinDBLanguageOptions) {
+  const { languages } = monaco;
+
+  languages.register({ id: LANGUAGE_ID });
+
+  const loadDocsPromise = loadDocs(options.docs).catch((err) => {
+    console.error('[monaco-dolphindb] load docs failed, please check option', err);
+  });
+
+  await registerTokenizer(languages);
+
+  setColorMap(monaco, options?.theme ?? 'light');
+
+  registerDocsRelatedLanguageProviders(monaco);
+
+  await loadDocsPromise;
+}
