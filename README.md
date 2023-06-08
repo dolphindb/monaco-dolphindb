@@ -56,20 +56,28 @@ loader.config({
   monaco,
 });
 
+async function beforeMonacoEditorInit() {
+  return loadWASM(await fetch('/onig.wasm'));
+}
+
 function App() {
+  const [value, setValue] = React.useState('1 + 2');
+
+  const onChange = React.useCallback((value?: string) => {
+    setValue(value ?? '');
+  }, []);
+
   return (
     <MonacoDolphinDBEditor
       dolphinDBLanguageOptions={{
         docs: '/docs.zh.json',
       }}
-      beforeInit={async () => {
-        // load wasm lazy
-        loadWASM(await fetch('/onig.wasm'));
-      }}
+      beforeInit={beforeMonacoEditorInit}
       options={{
         acceptSuggestionOnEnter: 'on',
       }}
-      value="1 + 2"
+      value={value}
+      onChange={onChange}
     />
   );
 }

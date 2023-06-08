@@ -3,12 +3,10 @@
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "strict": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": false,
     "forceConsistentCasingInFileNames": true,
-    "module": "NodeNext",
+    "module": "ESNext",
     "jsx": "react-jsx",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -17,5 +15,6 @@
       "monaco-dolphindb": ["../src/index.ts"],
       "monaco-dolphindb/*": ["../src/*"]
     }
-  }
+  },
+  "include": ["*.ts", "*.tsx"]
 }
