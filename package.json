@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "dev": "cd example && vite",
+    "prepublishOnly": "pnpm run build",
     "build": "tsc",
     "clean": "rimraf lib",
     "prepare": "husky install && zx ./scripts/prepare.js",
