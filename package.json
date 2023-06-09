@@ -1,6 +1,6 @@
 {
   "name": "monaco-dolphindb",
-  "version": "0.0.2-beta.2",
+  "version": "0.0.2-beta.3",
   "description": "Support Dolphindb language in Monaco Editor",
   "sideEffects": false,
   "type": "module",
