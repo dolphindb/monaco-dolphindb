@@ -33,6 +33,16 @@ export function MonacoDolphinDBEditor({
 
   useEffect(() => {
     (async () => {
+      function setInitMonacoPromiseThenAndCatch(p: Promise<typeof Monaco>) {
+        p.then((monaco) => {
+          if (!isUnmountedRef.current) {
+            onMonacoInit?.(monaco);
+          }
+        }).catch((err) => {
+          onMonacoInitFailed?.(err);
+        });
+      }
+
       // 已完成初始化
       if (monacoInitialized) {
         return;
@@ -40,15 +50,7 @@ export function MonacoDolphinDBEditor({
 
       // 正在初始化
       if (initMonacoPromise) {
-        initMonacoPromise
-          .then((monaco) => {
-            if (!isUnmountedRef.current) {
-              onMonacoInit?.(monaco);
-            }
-          })
-          .catch((err) => {
-            onMonacoInitFailed?.(err);
-          });
+        setInitMonacoPromiseThenAndCatch(initMonacoPromise);
         return;
       }
 
@@ -67,6 +69,8 @@ export function MonacoDolphinDBEditor({
 
         return monaco;
       })();
+
+      setInitMonacoPromiseThenAndCatch(initMonacoPromise);
     })();
   }, []);
 

@@ -10,6 +10,7 @@
 ### Bugfix
 
 - Fix non '.js' suffix imports
+- Fix `MonacoDolphinDBEditor`'s init hooks not working on first render
 
 ## 0.0.1
 

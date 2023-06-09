@@ -15,7 +15,8 @@ export async function registerDolphinDBLanguage(monaco: typeof Monaco, options: 
   languages.register({ id: LANGUAGE_ID });
 
   const loadDocsPromise = loadDocs(options.docs).catch((err) => {
-    console.error('[monaco-dolphindb] load docs failed, please check option', err);
+    console.error('[monaco-dolphindb] Load docs assets failed, please check your option');
+    console.error(err);
   });
 
   await registerTokenizer(languages);
