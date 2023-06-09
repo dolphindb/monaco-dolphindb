@@ -10,13 +10,15 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.js"
     },
     "./react": {
       "types": "./dist/react/index.d.ts",
-      "import": "./dist/react/index.js",
-      "require": "./dist/react/index.cjs"
+      "import": "./dist/react/index.js"
+    },
+    "./theme/*": {
+      "types": "./dist/theme/*.d.ts",
+      "import": "./dist/theme/*.js"
     }
   },
   "files": [

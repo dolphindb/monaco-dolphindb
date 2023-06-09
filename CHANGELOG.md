@@ -1,3 +1,16 @@
+## 0.0.3
+
+### Bugfix
+
+- Reset `initMonacoPromise` global variable after init wherever success or fail
+- Adjust detail docs change line rule
+- Remove `exports.*.require` property in `package.json`
+
+### Chore
+
+- Update LICENSE
+- Provide `theme/*` files import
+
 ## 0.0.2
 
 ### Feature
@@ -5,7 +18,7 @@
 `MonacoDolphinDBEditor`:
 
 - Add `onMonacoInitFailed` prop
-- rename `beforeInit` to `beforeMonacoInit`
+- Rename `beforeInit` to `beforeMonacoInit`
 
 ### Bugfix
 

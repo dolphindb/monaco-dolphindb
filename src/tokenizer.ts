@@ -6,8 +6,8 @@ import type * as Monaco from 'monaco-editor';
 import { tm_language } from 'dolphindb/language.js';
 import { LANGUAGE_ID } from './constant.js';
 
-import { theme_dark } from './theme/theme.dark.js';
-import { theme_light } from './theme/theme.light.js';
+import { theme_dark } from './theme/dark.js';
+import { theme_light } from './theme/light.js';
 
 const SCOPE_NAME = 'source.dolphindb';
 

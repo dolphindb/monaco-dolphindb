@@ -69,7 +69,7 @@ function getFunctionMonacoMarkdownString(keyword: string) {
     for (const x of para.children)
       if (x.type === 'text' && para.type !== 'example')
         // 对于参数段落，以 markdown 插入
-        str += x.value.join('\n');
+        str += x.value.join('\n') + '\n';
       // x.type === 'code' || para.type === 'example'
       else
         str +=
@@ -77,6 +77,7 @@ function getFunctionMonacoMarkdownString(keyword: string) {
           (x.language?.trim() === 'console' ? 'dolphindb' : x.language || '') +
           '\n' +
           x.value.join('\n') +
+          '\n' +
           '```\n';
 
     str += '\n';
