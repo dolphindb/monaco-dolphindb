@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^4.0.1
     version: 4.0.1(vite@4.3.9)
   dolphindb:
-    specifier: ^2.0.975
-    version: 2.0.975(react-dom@18.2.0)
+    specifier: ^2.0.976
+    version: 2.0.976(react-dom@18.2.0)
   eslint:
     specifier: ^8.43.0
     version: 8.43.0
@@ -2056,8 +2056,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /dolphindb@2.0.975(react-dom@18.2.0):
-    resolution: {integrity: sha512-i805DJV8ePTaCyH7PuF0lipwM5GsTzZ2FfRW6ZPFfc56bVjhW/FDlkxUPE3AUWcFXQgs67NKus+1drnSqG6Mgw==}
+  /dolphindb@2.0.976(react-dom@18.2.0):
+    resolution: {integrity: sha512-MlcETmGKAXLxs69f4S2+JB99Zyz1lmDHcymwhzY0VTtDXNrz7uTChS0CVmamm1xgimqMrBappxWIXE0H5Qa+2g==}
     engines: {node: '>=19.8.1'}
     dependencies:
       dayjs: 1.11.8
