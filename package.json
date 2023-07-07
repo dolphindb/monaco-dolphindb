@@ -34,6 +34,11 @@
   },
   "license": "MIT",
   "author": "DolphinDB",
+  "homepage": "https://github.com/dolphindb/monaco-dolphindb",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolphindb/monaco-dolphindb.git"
+  },
   "keywords": [
     "monaco",
     "monaco-editor",
