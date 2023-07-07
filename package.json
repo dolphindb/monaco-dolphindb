@@ -1,7 +1,7 @@
 {
   "name": "monaco-dolphindb",
   "version": "0.0.4",
-  "description": "Support Dolphindb language in Monaco Editor",
+  "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
   "sideEffects": false,
   "type": "module",
   "main": "./dist/index.cjs",
@@ -33,7 +33,7 @@
     "semantic-release": "semantic-release"
   },
   "license": "MIT",
-  "author": "shikai.zhang",
+  "author": "DolphinDB",
   "keywords": [
     "monaco",
     "monaco-editor",
