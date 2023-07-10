@@ -1,11 +1,15 @@
 # monaco-dolphindb
 
+https://www.npmjs.com/package/monaco-dolphindb
+
 ## Install
 
 ```bash
 # peerDependencies
 pnpm add dolphindb monaco-editor vscode-oniguruma vscode-textmate
+
 pnpm add monaco-dolphindb
+
 # optionalDependencies if you want to use 'monaco-dolphindb/react'
 pnpm add @monaco-editor/react
 ```
