@@ -1,6 +1,6 @@
 # monaco-dolphindb
 
-https://www.npmjs.com/package/monaco-dolphindb
+[![npm package][npm-img]][npm-url] [![Downloads][downloads-img]][downloads-url] [![Issues][issues-img]][issues-url]
 
 ## Install
 
@@ -88,3 +88,10 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
 ```
+
+[npm-img]: https://img.shields.io/npm/v/monaco-dolphindb
+[npm-url]: https://www.npmjs.com/package/monaco-dolphindb
+[downloads-img]: https://img.shields.io/npm/dt/monaco-dolphindb
+[downloads-url]: https://www.npmtrends.com/monaco-dolphindb
+[issues-img]: https://img.shields.io/github/issues/dolphindb/monaco-dolphindb
+[issues-url]: https://github.com/dolphindb/monaco-dolphindb/issues
