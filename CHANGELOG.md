@@ -1,3 +1,15 @@
+## 0.0.5
+
+### Feature
+
+- Add `MonacoDolphinDBDiffEditor` component in 'monaco-dolphindb/react'
+
+## 0.0.4
+
+### Chore
+
+- README and package.json update
+
 ## 0.0.3
 
 ### Bugfix

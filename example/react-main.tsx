@@ -1,5 +1,5 @@
 import { loadWASM } from 'vscode-oniguruma';
-import { MonacoDolphinDBEditor } from 'monaco-dolphindb/react';
+import { MonacoDolphinDBDiffEditor, MonacoDolphinDBEditor } from 'monaco-dolphindb/react';
 import * as monaco from 'monaco-editor';
 import { loader } from '@monaco-editor/react';
 import * as ReactDOM from 'react-dom/client';
@@ -14,24 +14,39 @@ async function beforeMonacoEditorInit() {
 }
 
 function App() {
-  const [value, setValue] = React.useState('1 + 2');
-
-  const onChange = React.useCallback((value?: string) => {
-    setValue(value ?? '');
-  }, []);
+  const [demo, setDemo] = React.useState<string>('normal');
 
   return (
-    <MonacoDolphinDBEditor
-      dolphinDBLanguageOptions={{
-        docs: '/docs.zh.json',
-      }}
-      beforeMonacoInit={beforeMonacoEditorInit}
-      options={{
-        acceptSuggestionOnEnter: 'on',
-      }}
-      value={value}
-      onChange={onChange}
-    />
+    <>
+      <select value={demo} onChange={(e) => setDemo(e.target.value)}>
+        <option value="normal">Normal</option>
+        <option value="diff">Diff</option>
+      </select>
+      {demo === 'normal' ? (
+        <MonacoDolphinDBEditor
+          dolphinDBLanguageOptions={{
+            docs: '/docs.zh.json',
+          }}
+          beforeMonacoInit={beforeMonacoEditorInit}
+          options={{
+            acceptSuggestionOnEnter: 'on',
+          }}
+          defaultValue="1 + 2"
+        />
+      ) : (
+        <MonacoDolphinDBDiffEditor
+          dolphinDBLanguageOptions={{
+            docs: '/docs.zh.json',
+          }}
+          options={{
+            readOnly: true,
+          }}
+          beforeMonacoInit={beforeMonacoEditorInit}
+          original="1 + 2"
+          modified="1 + 3"
+        />
+      )}
+    </>
   );
 }
 
