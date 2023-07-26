@@ -28,9 +28,8 @@
     "dev": "cd example && vite",
     "prepublishOnly": "pnpm run build",
     "build": "tsc",
-    "clean": "rimraf lib",
-    "prepare": "husky install && zx ./scripts/prepare.js",
-    "semantic-release": "semantic-release"
+    "clean": "rimraf dist",
+    "prepare": "husky install && zx ./scripts/prepare.js"
   },
   "license": "MIT",
   "author": "DolphinDB",
@@ -47,12 +46,6 @@
   ],
   "devDependencies": {
     "@monaco-editor/react": "^4.5.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^10.0.1",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^9.0.3",
-    "@semantic-release/npm": "^10.0.4",
-    "@semantic-release/release-notes-generator": "^11.0.3",
     "@types/node": "^20.3.2",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
