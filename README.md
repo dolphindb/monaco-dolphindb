@@ -77,6 +77,7 @@ function App() {
     <MonacoDolphinDBEditor
       dolphinDBLanguageOptions={{
         docs: '/docs.zh.json',
+        language: 'zh',
       }}
       beforeInit={beforeMonacoEditorInit}
       options={{
@@ -113,6 +114,7 @@ function App() {
     <MonacoDolphinDBDiffEditor
       dolphinDBLanguageOptions={{
         docs: '/docs.zh.json',
+        language: 'zh',
       }}
       beforeInit={beforeMonacoEditorInit}
       original="1 + 2"
