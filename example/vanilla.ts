@@ -81,6 +81,7 @@ await loadWASM(await fetch('/onig.wasm'));
 
 await registerDolphinDBLanguage(Monaco, {
   docs: '/docs.zh.json',
+  language: 'zh',
 });
 
 const editor = Monaco.editor.create(document.getElementById('root')!, {

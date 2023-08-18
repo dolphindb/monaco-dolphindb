@@ -6,6 +6,7 @@ import { LANGUAGE_ID } from './constant.js';
 
 export interface RegisterDolphinDBLanguageOptions {
   docs: DocsAvailableValue;
+  language: 'zh' | 'en';
   theme?: 'light' | 'dark' | IRawTheme;
 }
 
@@ -23,7 +24,7 @@ export async function registerDolphinDBLanguage(monaco: typeof Monaco, options: 
 
   setColorMap(monaco, options?.theme ?? 'light');
 
-  registerDocsRelatedLanguageProviders(monaco);
+  registerDocsRelatedLanguageProviders(monaco, options.language);
 
   await loadDocsPromise;
 }

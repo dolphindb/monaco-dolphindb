@@ -2,12 +2,13 @@ import { keywords, constants } from 'dolphindb/language.js';
 
 import type * as Monaco from 'monaco-editor';
 import { LANGUAGE_ID } from './constant.js';
+import type { RegisterDolphinDBLanguageOptions } from './index.js';
 
 const constants_lower = constants.map((constant) => constant.toLowerCase());
 
 export interface IDocsItem {
   title: string;
-  type: 'command' | 'function';
+  type: 'command' | 'function' | 'template';
   children: IDocItemContent[];
 }
 
@@ -49,18 +50,30 @@ const PAIR_TOKEN_MAP: Record<string, string> = {
 
 const PAIR_END_TOKENS = new Set(Object.values(PAIR_TOKEN_MAP));
 
-function getFunctionMonacoMarkdownString(keyword: string) {
+const FUNC_FPS = {
+  command: 'FunctionsandCommands/CommandsReferences/',
+  function: 'FunctionsandCommands/FunctionReferences/',
+  template: 'Functionalprogramming/TemplateFunctions/',
+} as const;
+
+function getFunctionMonacoMarkdownString(keyword: string, language: RegisterDolphinDBLanguageOptions['language']) {
   const func_doc = docs[keyword] || docs[keyword + '!'];
 
   if (!func_doc) return;
 
+  const { title, type } = func_doc;
+
   let str =
     // 标题
-    `#### ${func_doc.title}\n` +
+    `#### ${title}\n` +
     // 链接
-    `https://www.dolphindb.cn/cn/help/FunctionsandCommands/${
-      func_doc.type === 'command' ? 'CommandsReferences' : 'FunctionReferences'
-    }/${func_doc.title[0]}/${func_doc.title}.html\n`;
+    'https://' +
+    (language === 'zh' ? 'docs.dolphindb.cn/zh/' : 'dolphindb.com/') +
+    'help/' +
+    FUNC_FPS[type] +
+    (type !== 'template' ? `${title[0]}/` : '') +
+    title +
+    '.html\n';
 
   for (const para of func_doc.children) {
     // 加入段
@@ -257,7 +270,10 @@ export async function loadDocs(docsValue: DocsAvailableValue) {
   funcs_lower = funcs.map((func) => func.toLowerCase());
 }
 
-export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
+export function registerDocsRelatedLanguageProviders(
+  monaco: typeof Monaco,
+  language: RegisterDolphinDBLanguageOptions['language']
+) {
   const { languages } = monaco;
   const { CompletionItemKind } = languages;
 
@@ -314,7 +330,7 @@ export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
                   label: kw,
                   insertText: kw,
                   kind: CompletionItemKind.Keyword,
-                } as Monaco.languages.CompletionItem)
+                }) as Monaco.languages.CompletionItem
             ),
           ..._constants.map(
             (constant) =>
@@ -322,7 +338,7 @@ export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
                 label: constant,
                 insertText: constant,
                 kind: CompletionItemKind.Constant,
-              } as Monaco.languages.CompletionItem)
+              }) as Monaco.languages.CompletionItem
           ),
           ...fns.map(
             (fn) =>
@@ -330,14 +346,14 @@ export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
                 label: fn,
                 insertText: fn,
                 kind: CompletionItemKind.Function,
-              } as Monaco.languages.CompletionItem)
+              }) as Monaco.languages.CompletionItem
           ),
         ],
       };
     },
 
     resolveCompletionItem(item, _canceller) {
-      item.documentation = getFunctionMonacoMarkdownString(item.label as string);
+      item.documentation = getFunctionMonacoMarkdownString(item.label as string, language);
       return item;
     },
   });
@@ -348,7 +364,7 @@ export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
 
       if (!word) return;
 
-      const md = getFunctionMonacoMarkdownString(word.word);
+      const md = getFunctionMonacoMarkdownString(word.word, language);
 
       if (!md) return;
 
@@ -384,7 +400,7 @@ export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
           signatures: [
             {
               label: signature,
-              documentation: getFunctionMonacoMarkdownString(func_name),
+              documentation: getFunctionMonacoMarkdownString(func_name, language),
               parameters: params.map((param) => ({
                 label: param,
               })),
