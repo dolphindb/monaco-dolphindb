@@ -229,9 +229,10 @@ function find_active_param_index(document: Monaco.editor.ITextModel, position: M
     index = ncommas;
   }
 
+  const func_start_text = text.slice(0, start);
   /** 匹配当前函数名的正则, 并捕获该函数名 */
-  const match = /([a-zA-Z_\u4e00-\u9fa5][\w\u4e00-\u9fa5]*!?)\($/.exec(text);
-  return match && text[start - 1 - match[1].length] === '.' ? index + 1 : index;
+  const match = /[a-zA-Z_\u4e00-\u9fa5][\w\u4e00-\u9fa5]*!?$/.exec(func_start_text);
+  return match && func_start_text[start - 1 /* 去掉括号 */ - match[0].length] === '.' ? index + 1 : index;
 }
 
 /** 根据函数名提取出相应的文件对象，提取出函数 signature 和参数 */
