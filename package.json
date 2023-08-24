@@ -1,6 +1,6 @@
 {
   "name": "monaco-dolphindb",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
   "sideEffects": false,
   "type": "module",
@@ -45,25 +45,25 @@
     "language"
   ],
   "devDependencies": {
-    "@monaco-editor/react": "^4.5.1",
-    "@types/node": "^20.5.0",
-    "@types/react": "^18.2.20",
+    "@monaco-editor/react": "^4.5.2",
+    "@types/node": "^20.5.4",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.4.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
     "@vitejs/plugin-react": "^4.0.4",
-    "dolphindb": "^2.0.1015",
+    "dolphindb": "^2.0.1019",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
-    "lint-staged": "^14.0.0",
+    "lint-staged": "^14.0.1",
     "monaco-editor": "^0.41.0",
     "prettier": "^3.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.1",
-    "semantic-release": "^21.0.7",
+    "semantic-release": "^21.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
     "vite": "^4.4.9",
@@ -84,6 +84,6 @@
     "vscode-textmate": "^9.0.0"
   },
   "optionalDependencies": {
-    "@monaco-editor/react": "^4.5.1"
+    "@monaco-editor/react": "^4.5.2"
   }
 }
