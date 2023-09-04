@@ -1,6 +1,6 @@
 {
   "name": "monaco-dolphindb",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
   "sideEffects": false,
   "type": "module",
