@@ -1,9 +1,9 @@
 import { DiffEditor as MonacoDiffEditor, DiffEditorProps } from '@monaco-editor/react';
 
 import { DEFAULT_SETTINGS } from './default-settings.js';
-import { IUseInitDolphinDBbMonacoOptions, useInitDolphinDBbMonaco } from './shared.js';
+import { IUseInitDolphinDBMonacoOptions, useInitDolphinDBMonaco, useUpdateDolphinDBMonacoOptions } from './shared.js';
 
-interface IMonacoDolphinDBDiffEditorProps extends DiffEditorProps, IUseInitDolphinDBbMonacoOptions {}
+interface IMonacoDolphinDBDiffEditorProps extends DiffEditorProps, IUseInitDolphinDBMonacoOptions {}
 
 export function MonacoDolphinDBDiffEditor({
   onMonacoInit,
@@ -13,12 +13,14 @@ export function MonacoDolphinDBDiffEditor({
   dolphinDBLanguageOptions,
   ...restProps
 }: IMonacoDolphinDBDiffEditorProps) {
-  useInitDolphinDBbMonaco({
+  useInitDolphinDBMonaco({
     beforeMonacoInit,
     onMonacoInit,
     onMonacoInitFailed,
     dolphinDBLanguageOptions,
   });
+
+  useUpdateDolphinDBMonacoOptions(dolphinDBLanguageOptions);
 
   return (
     <MonacoDiffEditor

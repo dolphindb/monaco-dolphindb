@@ -15,7 +15,7 @@ export async function registerDolphinDBLanguage(monaco: typeof Monaco, options: 
 
   languages.register({ id: LANGUAGE_ID });
 
-  const loadDocsPromise = loadDocs(options.docs).catch((err) => {
+  const loadDocsPromise = loadDocs(options.docs, options.language).catch((err) => {
     console.error('[monaco-dolphindb] Load docs assets failed, please check your option');
     console.error(err);
   });
@@ -24,7 +24,7 @@ export async function registerDolphinDBLanguage(monaco: typeof Monaco, options: 
 
   setColorMap(monaco, options?.theme ?? 'light');
 
-  registerDocsRelatedLanguageProviders(monaco, options.language);
+  registerDocsRelatedLanguageProviders(monaco);
 
   await loadDocsPromise;
 }

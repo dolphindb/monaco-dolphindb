@@ -34,7 +34,7 @@ export type IDocs = Record<string, IDocsItem>;
 export type DocsAvailableValue = string | IDocs | Promise<IDocs> | (() => IDocs | Promise<IDocs>);
 
 let docs: IDocs = {};
-
+let docs_language: 'zh' | 'en';
 let funcs: string[] = [];
 let funcs_lower: string[] = [];
 
@@ -252,7 +252,9 @@ function get_signature_and_params(func_name: string): {
   return { signature, params };
 }
 
-export async function loadDocs(docsValue: DocsAvailableValue) {
+export async function loadDocs(docsValue: DocsAvailableValue, language: RegisterDolphinDBLanguageOptions['language']) {
+  docs_language = language;
+
   switch (typeof docsValue) {
     case 'string':
       docs = await fetch(docsValue).then((res) => res.json());
@@ -272,10 +274,7 @@ export async function loadDocs(docsValue: DocsAvailableValue) {
   funcs_lower = funcs.map((func) => func.toLowerCase());
 }
 
-export function registerDocsRelatedLanguageProviders(
-  monaco: typeof Monaco,
-  language: RegisterDolphinDBLanguageOptions['language']
-) {
+export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
   const { languages } = monaco;
   const { CompletionItemKind } = languages;
 
@@ -332,7 +331,7 @@ export function registerDocsRelatedLanguageProviders(
                   label: kw,
                   insertText: kw,
                   kind: CompletionItemKind.Keyword,
-                }) as Monaco.languages.CompletionItem
+                } as Monaco.languages.CompletionItem)
             ),
           ..._constants.map(
             (constant) =>
@@ -340,7 +339,7 @@ export function registerDocsRelatedLanguageProviders(
                 label: constant,
                 insertText: constant,
                 kind: CompletionItemKind.Constant,
-              }) as Monaco.languages.CompletionItem
+              } as Monaco.languages.CompletionItem)
           ),
           ...fns.map(
             (fn) =>
@@ -348,14 +347,14 @@ export function registerDocsRelatedLanguageProviders(
                 label: fn,
                 insertText: fn,
                 kind: CompletionItemKind.Function,
-              }) as Monaco.languages.CompletionItem
+              } as Monaco.languages.CompletionItem)
           ),
         ],
       };
     },
 
     resolveCompletionItem(item, _canceller) {
-      item.documentation = getFunctionMonacoMarkdownString(item.label as string, language);
+      item.documentation = getFunctionMonacoMarkdownString(item.label as string, docs_language);
       return item;
     },
   });
@@ -366,7 +365,7 @@ export function registerDocsRelatedLanguageProviders(
 
       if (!word) return;
 
-      const md = getFunctionMonacoMarkdownString(word.word, language);
+      const md = getFunctionMonacoMarkdownString(word.word, docs_language);
 
       if (!md) return;
 
@@ -402,7 +401,7 @@ export function registerDocsRelatedLanguageProviders(
           signatures: [
             {
               label: signature,
-              documentation: getFunctionMonacoMarkdownString(func_name, language),
+              documentation: getFunctionMonacoMarkdownString(func_name, docs_language),
               parameters: params.map((param) => ({
                 label: param,
               })),

@@ -1,12 +1,15 @@
 import type * as Monaco from 'monaco-editor';
 import useIsUnmounted from './use-is-unmounted.js';
-import { loader } from '@monaco-editor/react';
+import { loader, useMonaco } from '@monaco-editor/react';
 import { RegisterDolphinDBLanguageOptions, registerDolphinDBLanguage } from '../index.js';
+import { setColorMap } from '../tokenizer.js';
+import { loadDocs } from '../docs.js';
+import { useUpdateEffect } from './use-update-effect.js';
 
 let monacoInitialized = false;
 let initMonacoPromise: Promise<typeof Monaco> | null = null;
 
-export interface IUseInitDolphinDBbMonacoOptions {
+export interface IUseInitDolphinDBMonacoOptions {
   /** 只会触发在 monaco 初始化完成前渲染的组件的，初始化完成后重新渲染组件将不再触发该方法 */
   onMonacoInit?: (monaco: typeof Monaco) => void;
   /** Monaco 初始化失败的回调，触发规则同 onMonacoInit */
@@ -16,7 +19,7 @@ export interface IUseInitDolphinDBbMonacoOptions {
   dolphinDBLanguageOptions: RegisterDolphinDBLanguageOptions;
 }
 
-export function useInitDolphinDBbMonaco(options: IUseInitDolphinDBbMonacoOptions) {
+export function useInitDolphinDBMonaco(options: IUseInitDolphinDBMonacoOptions) {
   const { beforeMonacoInit, onMonacoInit, onMonacoInitFailed, dolphinDBLanguageOptions } = options;
 
   const isUnmountedRef = useIsUnmounted();
@@ -62,4 +65,25 @@ export function useInitDolphinDBbMonaco(options: IUseInitDolphinDBbMonacoOptions
   })();
 
   setInitMonacoPromiseThenAndCatch(initMonacoPromise);
+}
+
+export type IUseUpdateDolphinDBMonacoOptions = RegisterDolphinDBLanguageOptions;
+
+/**
+ * update editor on options change
+ */
+export function useUpdateDolphinDBMonacoOptions(options: IUseUpdateDolphinDBMonacoOptions) {
+  const { theme, docs, language } = options;
+
+  const monaco = useMonaco();
+
+  useUpdateEffect(() => {
+    if (monaco) {
+      setColorMap(monaco, theme ?? 'light');
+    }
+  }, [monaco, theme]);
+
+  useUpdateEffect(() => {
+    loadDocs(docs, language);
+  }, [docs, language]);
 }
