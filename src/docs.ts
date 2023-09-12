@@ -331,7 +331,7 @@ export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
                   label: kw,
                   insertText: kw,
                   kind: CompletionItemKind.Keyword,
-                } as Monaco.languages.CompletionItem)
+                }) as Monaco.languages.CompletionItem
             ),
           ..._constants.map(
             (constant) =>
@@ -339,7 +339,7 @@ export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
                 label: constant,
                 insertText: constant,
                 kind: CompletionItemKind.Constant,
-              } as Monaco.languages.CompletionItem)
+              }) as Monaco.languages.CompletionItem
           ),
           ...fns.map(
             (fn) =>
@@ -347,7 +347,7 @@ export function registerDocsRelatedLanguageProviders(monaco: typeof Monaco) {
                 label: fn,
                 insertText: fn,
                 kind: CompletionItemKind.Function,
-              } as Monaco.languages.CompletionItem)
+              }) as Monaco.languages.CompletionItem
           ),
         ],
       };
