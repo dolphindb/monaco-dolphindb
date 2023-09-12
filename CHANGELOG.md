@@ -1,3 +1,9 @@
+## 0.0.13
+
+### Feature
+
+- support `MonacoDolphinDBEditor` and `MonacoDolphinDBDiffEditor` React Component's props change.
+
 ## 0.0.5
 
 ### Feature
