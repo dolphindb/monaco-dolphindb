@@ -23,7 +23,9 @@
   ],
   "scripts": {
     "dev": "cd example && vite",
-    "prepublishOnly": "pnpm run build",
+    "cm": "cz",
+    "g-changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
+    "prepublishOnly": "pnpm run build && ",
     "build": "tsc",
     "clean": "rimraf dist",
     "prepare": "husky install && zx ./scripts/prepare.js"
@@ -42,6 +44,8 @@
     "language"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^17.8.0",
+    "@commitlint/config-conventional": "^17.8.0",
     "@monaco-editor/react": "^4.5.2",
     "@types/node": "^20.6.0",
     "@types/react": "^18.2.21",
@@ -49,6 +53,9 @@
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "@vitejs/plugin-react": "^4.0.4",
+    "commitizen": "^4.3.0",
+    "conventional-changelog-cli": "^4.1.0",
+    "cz-conventional-changelog": "^3.3.0",
     "dolphindb": "^2.0.1022",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
@@ -82,5 +89,10 @@
   },
   "optionalDependencies": {
     "@monaco-editor/react": "^4.5.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
