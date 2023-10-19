@@ -1,7 +1,7 @@
 import { Editor as MonacoEditor, EditorProps } from '@monaco-editor/react';
 
 import { DEFAULT_SETTINGS } from './default-settings.js';
-import { IUseInitDolphinDBMonacoOptions, useInitDolphinDBMonaco, useUpdateDolphinDBMonacoOptions } from './shared.js';
+import { IUseInitDolphinDBMonacoOptions, useInitDolphinDBMonaco, useDolphinDBMonacoOptions } from './shared.js';
 
 interface IMonacoDolphinDBEditorProps extends EditorProps, IUseInitDolphinDBMonacoOptions {}
 
@@ -21,7 +21,7 @@ export function MonacoDolphinDBEditor({
     dolphinDBLanguageOptions,
   });
 
-  useUpdateDolphinDBMonacoOptions(dolphinDBLanguageOptions);
+  useDolphinDBMonacoOptions(dolphinDBLanguageOptions);
 
   return (
     <MonacoEditor

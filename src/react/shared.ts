@@ -1,10 +1,10 @@
+import { useEffect } from 'react';
 import type * as Monaco from 'monaco-editor';
-import useIsUnmounted from './use-is-unmounted.js';
 import { loader, useMonaco } from '@monaco-editor/react';
+import useIsUnmounted from './use-is-unmounted.js';
 import { RegisterDolphinDBLanguageOptions, registerDolphinDBLanguage } from '../index.js';
 import { setColorMap } from '../tokenizer.js';
 import { loadDocs } from '../docs.js';
-import { useUpdateEffect } from './use-update-effect.js';
 
 let monacoInitialized = false;
 let initMonacoPromise: Promise<typeof Monaco> | null = null;
@@ -67,23 +67,23 @@ export function useInitDolphinDBMonaco(options: IUseInitDolphinDBMonacoOptions) 
   setInitMonacoPromiseThenAndCatch(initMonacoPromise);
 }
 
-export type IUseUpdateDolphinDBMonacoOptions = RegisterDolphinDBLanguageOptions;
+export type IUseDolphinDBMonacoOptions = RegisterDolphinDBLanguageOptions;
 
 /**
  * update editor on options change
  */
-export function useUpdateDolphinDBMonacoOptions(options: IUseUpdateDolphinDBMonacoOptions) {
+export function useDolphinDBMonacoOptions(options: IUseDolphinDBMonacoOptions) {
   const { theme, docs, language } = options;
 
   const monaco = useMonaco();
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     if (monaco) {
       setColorMap(monaco, theme ?? 'light');
     }
   }, [monaco, theme]);
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     loadDocs(docs, language);
   }, [docs, language]);
 }

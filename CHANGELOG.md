@@ -1,3 +1,10 @@
+## 0.0.15
+
+### Bugfix
+
+- Difference mounted props with last render not affect
+- Add duplicate call check on `loadDocs`
+
 ## 0.0.13
 
 ### Feature

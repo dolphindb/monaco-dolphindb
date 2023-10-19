@@ -4,9 +4,6 @@
   "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
   "sideEffects": false,
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
