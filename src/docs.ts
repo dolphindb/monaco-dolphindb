@@ -68,7 +68,7 @@ function getFunctionMonacoMarkdownString(keyword: string, language: RegisterDolp
     `#### ${title}\n` +
     
     // 旧文档链接
-    (language === 'zh' ? 'docs.dolphindb.cn/zh/help/' : 'dolphindb.com/help/') +
+    'https://' + (language === 'zh' ? 'docs.dolphindb.cn/zh/help/' : 'dolphindb.com/help200/') +
     
     // 新文档链接
     // `https://docs.dolphindb.cn/${language === 'zh' ? 'zh' : 'en'}/` +
