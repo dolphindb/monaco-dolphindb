@@ -66,8 +66,13 @@ function getFunctionMonacoMarkdownString(keyword: string, language: RegisterDolp
   let str =
     // 标题
     `#### ${title}\n` +
-    // 链接
-    `https://docs.dolphindb.cn/${language === 'en' ? 'en' : 'zh'}/` +
+    
+    // 旧文档链接
+    (language === 'zh' ? 'docs.dolphindb.cn/zh/help/' : 'dolphindb.com/help/') +
+    
+    // 新文档链接
+    // `https://docs.dolphindb.cn/${language === 'zh' ? 'zh' : 'en'}/` +
+    
     FUNC_FPS[type] +
     (type !== 'template' ? `${title[0]}/` : '') +
     title +
