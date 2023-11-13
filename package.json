@@ -29,7 +29,7 @@
     "dev": "cd example && vite",
     "cm": "cz",
     "g-changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
-    "prepublishOnly": "pnpm run build && ",
+    "prepublishOnly": "pnpm run build && pnpm run g-changelog",
     "build": "tsc",
     "clean": "rimraf dist",
     "prepare": "husky install && zx ./scripts/prepare.js"
