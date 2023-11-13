@@ -4,7 +4,7 @@ import { loader, useMonaco } from '@monaco-editor/react';
 import useIsUnmounted from './use-is-unmounted.js';
 import { RegisterDolphinDBLanguageOptions, registerDolphinDBLanguage } from '../index.js';
 import { setColorMap } from '../tokenizer.js';
-import { loadDocs } from '../docs.js';
+import { setDocsAnalyser } from '../monaco.js';
 
 let monacoInitialized = false;
 let initMonacoPromise: Promise<typeof Monaco> | null = null;
@@ -73,7 +73,7 @@ export type IUseDolphinDBMonacoOptions = RegisterDolphinDBLanguageOptions;
  * update editor on options change
  */
 export function useDolphinDBMonacoOptions(options: IUseDolphinDBMonacoOptions) {
-  const { theme, docs, language } = options;
+  const { theme, docsAnalyser } = options;
 
   const monaco = useMonaco();
 
@@ -84,6 +84,6 @@ export function useDolphinDBMonacoOptions(options: IUseDolphinDBMonacoOptions) {
   }, [monaco, theme]);
 
   useEffect(() => {
-    loadDocs(docs, language);
-  }, [docs, language]);
+    setDocsAnalyser(docsAnalyser);
+  }, [docsAnalyser]);
 }

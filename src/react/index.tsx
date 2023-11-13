@@ -1,2 +1,2 @@
-export { MonacoDolphinDBEditor } from './editor.js';
-export { MonacoDolphinDBDiffEditor } from './diff-editor.js';
+export { MonacoDolphinDBEditor, type IMonacoDolphinDBEditorProps } from './editor.js';
+export { MonacoDolphinDBDiffEditor, type IMonacoDolphinDBDiffEditorProps } from './diff-editor.js';

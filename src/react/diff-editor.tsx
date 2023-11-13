@@ -3,7 +3,7 @@ import { DiffEditor as MonacoDiffEditor, DiffEditorProps } from '@monaco-editor/
 import { DEFAULT_SETTINGS } from './default-settings.js';
 import { IUseInitDolphinDBMonacoOptions, useInitDolphinDBMonaco, useDolphinDBMonacoOptions } from './shared.js';
 
-interface IMonacoDolphinDBDiffEditorProps extends DiffEditorProps, IUseInitDolphinDBMonacoOptions {}
+export interface IMonacoDolphinDBDiffEditorProps extends DiffEditorProps, IUseInitDolphinDBMonacoOptions {}
 
 export function MonacoDolphinDBDiffEditor({
   onMonacoInit,
