@@ -25,7 +25,7 @@
     "dev": "cd example && vite",
     "cm": "cz",
     "g-changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
-    "prepublishOnly": "pnpm run build && ",
+    "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run g-changelog",
     "build": "tsc",
     "clean": "rimraf dist",
     "prepare": "husky install && zx ./scripts/prepare.js"
@@ -84,7 +84,7 @@
   "peerDependencies": {
     "dolphindb": "^2.0.976",
     "monaco-editor": "^0.39.0",
-    "vscode-oniguruma": "^1.7.0",
+    "vscode-oniguruma": "^1.7.0 || ^2.0.0",
     "vscode-textmate": "^9.0.0"
   },
   "optionalDependencies": {

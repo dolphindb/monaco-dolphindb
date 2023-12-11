@@ -68,7 +68,7 @@ const settings: Monaco.editor.IStandaloneEditorConstructionOptions = {
     enabled: 'off',
   },
 
-  acceptSuggestionOnEnter: 'off',
+  acceptSuggestionOnEnter: 'on',
 
   quickSuggestions: {
     other: true,
