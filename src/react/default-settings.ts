@@ -19,7 +19,7 @@ export const DEFAULT_SETTINGS: Monaco.editor.IStandaloneEditorConstructionOption
     snippetsPreventQuickSuggestions: false,
   },
 
-  wordBasedSuggestions: true,
+  wordBasedSuggestions: 'allDocuments',
 
   mouseWheelZoom: true,
   guides: {
