@@ -16,12 +16,21 @@ pnpm add @monaco-editor/react
 
 ## Prepare
 
-monaco-dolphindb need some external resources to work properly, you should copy them from node_modules to your project:
+monaco-dolphindb need some external resources to work properly, you should copy follow things from node_modules to your project:
 
 - `onig.wasm` from `vscode-oniguruma/release/onig.wasm`
 - `docs.en.json` and `docs.zh.json` from `dolphindb`
 
-Then write some code to load them.
+### Breaking change in docs.en.json and docs.zh.json
+
+<!-- TODO：fill real version -->
+
+In v0.1.0, we upgrade the struct of `docs.xx.json`, so you should use `dolphindb` library newer than `v2.0.????`
+
+| monaco-dolphindb | dolphindb   |
+| ---------------- | ----------- |
+| > 0.1.0          | >= 2.0.???? |
+| < 0.1.0          | <= 2.0.???? |
 
 ## Usage
 
