@@ -56,6 +56,21 @@ const FUNC_FPS = {
   template: 'Functionalprogramming/TemplateFunctions/',
 } as const;
 
+// 需要在 web/build.ts 中引入对应的 basic-languages/ 下面的文件
+const code_languages = new Set([
+  'dolphindb',
+  'dolphindb-python',
+  'python',
+  'javascript',
+  'typescript',
+  'css',
+  'html',
+  'cpp',
+  'sql',
+  'scss',
+  'shell',
+]);
+
 function getFunctionMonacoMarkdownString(keyword: string, language: RegisterDolphinDBLanguageOptions['language']) {
   const func_doc = docs[keyword] || docs[keyword + '!'];
 
@@ -81,7 +96,9 @@ function getFunctionMonacoMarkdownString(keyword: string, language: RegisterDolp
     // 加入段
     str += `#### ${para.title}\n`;
 
-    for (const x of para.children)
+    for (const x of para.children) {
+      const code_language = x.language?.trim();
+
       if (x.type === 'text' && para.type !== 'example')
         // 对于参数段落，以 markdown 插入
         str += x.value.join('\n') + '\n';
@@ -89,11 +106,12 @@ function getFunctionMonacoMarkdownString(keyword: string, language: RegisterDolp
       else
         str +=
           '```' +
-          (x.language?.trim() === 'console' ? 'dolphindb' : x.language || '') +
+          (code_languages.has(code_language!) ? code_language : '') +
           '\n' +
           x.value.join('\n') +
           '\n' +
           '```\n';
+    }
 
     str += '\n';
   }
