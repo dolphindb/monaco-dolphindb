@@ -1,6 +1,6 @@
 {
   "name": "monaco-dolphindb",
-  "version": "0.1.0-beta.1",
+  "version": "0.0.20",
   "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
   "sideEffects": false,
   "type": "module",
@@ -27,12 +27,9 @@
   ],
   "scripts": {
     "dev": "cd example && vite",
-    "cm": "cz",
-    "g-changelog": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s",
-    "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run g-changelog",
     "build": "tsc",
     "clean": "rimraf dist",
-    "prepare": "husky install && zx ./scripts/prepare.js"
+    "prepare": "zx ./scripts/prepare.js"
   },
   "license": "Apache-2.0",
   "author": "DolphinDB",
@@ -48,56 +45,39 @@
     "language"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^17.8.0",
-    "@commitlint/config-conventional": "^17.8.0",
-    "@monaco-editor/react": "^4.5.2",
-    "@types/node": "^20.10.5",
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
-    "@types/vscode": "^1.84.1",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
-    "@vitejs/plugin-react": "^4.0.4",
-    "commitizen": "^4.3.0",
-    "conventional-changelog-cli": "^4.1.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "dolphindb": "^2.0.1022",
-    "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^14.0.1",
-    "monaco-editor": "^0.45.0",
-    "prettier": "^3.1.1",
+    "@monaco-editor/react": "^4.6.0",
+    "@types/node": "^20.11.27",
+    "@types/react": "^18.2.65",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "dolphindb": "^2.0.1103",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "monaco-editor": "^0.47.0",
+    "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.5",
-    "semantic-release": "^21.1.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
-    "vite": "^4.4.9",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6",
     "vite-plugin-monaco-editor": "^1.1.0",
     "vite-plugin-pages": "^0.32.0",
-    "vite-tsconfig-paths": "^4.2.2",
+    "vite-tsconfig-paths": "^4.3.2",
     "vscode-oniguruma": "^2.0.1",
     "vscode-textmate": "^9.0.0",
     "zx": "^7.2.3"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "peerDependencies": {
-    "dolphindb": "^2.0.976",
+    "dolphindb": "^2.0.1103",
     "monaco-editor": ">=0.39.0",
     "vscode-oniguruma": "^1.7.0 || ^2.0.0",
     "vscode-textmate": "^9.0.0"
   },
   "optionalDependencies": {
-    "@monaco-editor/react": "^4.5.2"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
+    "@monaco-editor/react": "^4.6.0"
   }
 }

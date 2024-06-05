@@ -1,3 +1,0 @@
-{
-  "*.ts,*.tsx,*.js": "eslint --cache --cache-location .eslintcache --fix"
-}
