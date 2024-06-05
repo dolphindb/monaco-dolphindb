@@ -4,7 +4,7 @@ import { loader, useMonaco } from '@monaco-editor/react';
 import useIsUnmounted from './use-is-unmounted.js';
 import { RegisterDolphinDBLanguageOptions, registerDolphinDBLanguage } from '../index.js';
 import { setColorMap } from '../tokenizer.js';
-import { setDocsAnalyser } from '../monaco.js';
+import { setDocsAnalyser } from '../docs.js';
 
 let monacoInitialized = false;
 let initMonacoPromise: Promise<typeof Monaco> | null = null;

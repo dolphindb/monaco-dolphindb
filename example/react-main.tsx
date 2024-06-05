@@ -7,6 +7,7 @@ import * as React from 'react';
 import { DocsAnalyser } from 'monaco-dolphindb';
 
 import style from './react-main.module.css';
+import { Docs } from 'dolphindb/docs';
 
 loader.config({
   monaco,
@@ -16,18 +17,20 @@ async function beforeMonacoEditorInit() {
   return loadWASM(await fetch('/onig.wasm'));
 }
 
-const docsAnalyser = new DocsAnalyser();
-docsAnalyser.loadDocsAsync('/docs.zh.json');
+const docsAnalyser = new DocsAnalyser(await (await fetch('/docs.zh.json')).json());
 
 function App() {
   const [demo, setDemo] = React.useState<string>('normal');
   const [docsLanguage, setDocsLanguage] = React.useState<'zh' | 'en'>('zh');
   const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
 
-  const onLanguageChanged = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onLanguageChanged = React.useCallback(async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLang = e.target.value as 'zh' | 'en';
     setDocsLanguage(newLang);
-    docsAnalyser.loadDocsAsync(newLang === 'zh' ? '/docs.zh.json' : '/docs.en.json');
+
+    docsAnalyser.docs = await (await fetch(newLang === 'zh' ? '/docs.zh.json' : '/docs.en.json')).json();
+    docsAnalyser.funcs = Object.keys(docsAnalyser.docs as Docs);
+    docsAnalyser.lower_funcs = docsAnalyser.funcs.map((func) => func.toLowerCase());
   }, []);
 
   return (

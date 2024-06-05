@@ -12,7 +12,7 @@ const settings: Monaco.editor.IStandaloneEditorConstructionOptions = {
     insertMode: 'replace',
     snippetsPreventQuickSuggestions: false,
   },
-  wordBasedSuggestions: true,
+  wordBasedSuggestions: 'allDocuments',
 
   mouseWheelZoom: true,
   guides: {
@@ -79,12 +79,8 @@ const settings: Monaco.editor.IStandaloneEditorConstructionOptions = {
 
 await loadWASM(await fetch('/onig.wasm'));
 
-const docsAnalyser = new DocsAnalyser();
-
-docsAnalyser.loadDocsAsync('/docs.zh.json');
-
 await registerDolphinDBLanguage(Monaco, {
-  docsAnalyser,
+  docsAnalyser: new DocsAnalyser(await (await fetch('/docs.zh.json')).json()),
 });
 
 const editor = Monaco.editor.create(document.getElementById('root')!, {

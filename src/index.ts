@@ -2,8 +2,8 @@ import { registerTokenizer, setColorMap } from './tokenizer.js';
 import type * as Monaco from 'monaco-editor';
 import { IRawTheme } from 'vscode-textmate';
 import { LANGUAGE_ID } from './constant.js';
-import { DocsAnalyser } from './docs/analyser.js';
-import { registerMonacoLanguageProviders, setDocsAnalyser } from './monaco.js';
+import { DocsAnalyser } from 'dolphindb/docs.js';
+import { registerMonacoLanguageProviders, setDocsAnalyser } from './docs.js';
 
 export interface RegisterDolphinDBLanguageOptions {
   docsAnalyser: DocsAnalyser;
@@ -23,4 +23,4 @@ export async function registerDolphinDBLanguage(monaco: typeof Monaco, options: 
   setColorMap(monaco, options?.theme ?? 'light');
 }
 
-export { DocsAnalyser } from './docs/analyser.js';
+export { DocsAnalyser } from 'dolphindb/docs.js';

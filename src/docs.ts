@@ -1,7 +1,6 @@
 import type * as Monaco from 'monaco-editor';
-import { DocsAnalyser } from './docs/analyser.js';
+import { DocsAnalyser, parse_signature_help_from_text } from 'dolphindb/docs.js';
 import { LANGUAGE_ID } from './constant.js';
-import { parseSignatureHelpFromText } from './docs/parse-signature-help-from-text.js';
 
 /** 最大搜索行数 */
 const MAX_MATCH_LINES = 30;
@@ -31,7 +30,7 @@ export function registerMonacoLanguageProviders(monaco: typeof Monaco) {
     provideCompletionItems(model, pos) {
       const keyword = model.getWordAtPosition(pos)?.word ?? '';
 
-      const { functions, constants, keywords } = docsAnalyser.searchCompletionItems(keyword);
+      const { functions, constants, keywords } = docsAnalyser.search_completion_items(keyword);
 
       return {
         suggestions: [
@@ -55,7 +54,7 @@ export function registerMonacoLanguageProviders(monaco: typeof Monaco) {
     },
 
     resolveCompletionItem(item) {
-      const md = docsAnalyser.getFunctionMarkdown(item.label as string);
+      const md = docsAnalyser.get_function_markdown(item.label as string);
 
       if (md) {
         item.documentation = wrapMarkdownString(md);
@@ -73,7 +72,7 @@ export function registerMonacoLanguageProviders(monaco: typeof Monaco) {
         return;
       }
 
-      const md = docsAnalyser.getFunctionMarkdown(word.word);
+      const md = docsAnalyser.get_function_markdown(word.word);
 
       if (!md) {
         return;
@@ -96,12 +95,12 @@ export function registerMonacoLanguageProviders(monaco: typeof Monaco) {
         endColumn: pos.column,
       });
 
-      const result = parseSignatureHelpFromText(text, docsAnalyser);
+      const result = parse_signature_help_from_text(text, docsAnalyser);
       if (!result) {
         return;
       }
 
-      const { signature, activeParameter, documentationMD } = result;
+      const { signature, active_parameter, documentation_md } = result;
 
       return {
         dispose() {},
@@ -111,11 +110,11 @@ export function registerMonacoLanguageProviders(monaco: typeof Monaco) {
           activeParameter: -1,
           signatures: [
             {
-              label: signature.fullText,
-              activeParameter: activeParameter,
-              documentation: documentationMD ? wrapMarkdownString(documentationMD) : undefined,
+              label: signature.full,
+              activeParameter: active_parameter,
+              documentation: documentation_md ? wrapMarkdownString(documentation_md) : undefined,
               parameters: signature.parameters.map((param) => ({
-                label: param.fullText,
+                label: param.full,
               })),
             },
           ],
