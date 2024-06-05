@@ -4,7 +4,6 @@ import { loader, useMonaco } from '@monaco-editor/react';
 import useIsUnmounted from './use-is-unmounted.js';
 import { RegisterDolphinDBLanguageOptions, registerDolphinDBLanguage } from '../index.js';
 import { setColorMap } from '../tokenizer.js';
-import { setDocsAnalyser } from '../docs.js';
 
 let monacoInitialized = false;
 let initMonacoPromise: Promise<typeof Monaco> | null = null;
@@ -19,9 +18,12 @@ export interface IUseInitDolphinDBMonacoOptions {
   dolphinDBLanguageOptions: RegisterDolphinDBLanguageOptions;
 }
 
-export function useInitDolphinDBMonaco(options: IUseInitDolphinDBMonacoOptions) {
-  const { beforeMonacoInit, onMonacoInit, onMonacoInitFailed, dolphinDBLanguageOptions } = options;
-
+export function useInitDolphinDBMonaco({
+  beforeMonacoInit,
+  onMonacoInit,
+  onMonacoInitFailed,
+  dolphinDBLanguageOptions,
+}: IUseInitDolphinDBMonacoOptions) {
   const isUnmountedRef = useIsUnmounted();
 
   function setInitMonacoPromiseThenAndCatch(p: Promise<typeof Monaco>) {
@@ -72,9 +74,7 @@ export type IUseDolphinDBMonacoOptions = RegisterDolphinDBLanguageOptions;
 /**
  * update editor on options change
  */
-export function useDolphinDBMonacoOptions(options: IUseDolphinDBMonacoOptions) {
-  const { theme, docsAnalyser } = options;
-
+export function useDolphinDBMonacoOptions({ theme }: IUseDolphinDBMonacoOptions) {
   const monaco = useMonaco();
 
   useEffect(() => {
@@ -82,8 +82,4 @@ export function useDolphinDBMonacoOptions(options: IUseDolphinDBMonacoOptions) {
       setColorMap(monaco, theme ?? 'light');
     }
   }, [monaco, theme]);
-
-  useEffect(() => {
-    setDocsAnalyser(docsAnalyser);
-  }, [docsAnalyser]);
 }

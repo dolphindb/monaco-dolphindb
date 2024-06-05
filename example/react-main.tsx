@@ -4,10 +4,10 @@ import * as monaco from 'monaco-editor';
 import { loader } from '@monaco-editor/react';
 import * as ReactDOM from 'react-dom/client';
 import * as React from 'react';
-import { DocsAnalyser } from 'monaco-dolphindb';
 
 import style from './react-main.module.css';
-import { Docs } from 'dolphindb/docs';
+
+type languageType = 'zh' | 'en';
 
 loader.config({
   monaco,
@@ -17,20 +17,18 @@ async function beforeMonacoEditorInit() {
   return loadWASM(await fetch('/onig.wasm'));
 }
 
-const docsAnalyser = new DocsAnalyser(await (await fetch('/docs.zh.json')).json());
+const url = new URL(location.href);
+const docsLanguage = (url.searchParams.get('language') as languageType) ?? 'zh';
+const docs = await (await fetch(`/docs.${docsLanguage}.json`)).json();
 
 function App() {
   const [demo, setDemo] = React.useState<string>('normal');
-  const [docsLanguage, setDocsLanguage] = React.useState<'zh' | 'en'>('zh');
   const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
 
   const onLanguageChanged = React.useCallback(async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLang = e.target.value as 'zh' | 'en';
-    setDocsLanguage(newLang);
+    url.searchParams.set('language', e.target.value as languageType);
 
-    docsAnalyser.docs = await (await fetch(newLang === 'zh' ? '/docs.zh.json' : '/docs.en.json')).json();
-    docsAnalyser.funcs = Object.keys(docsAnalyser.docs as Docs);
-    docsAnalyser.lower_funcs = docsAnalyser.funcs.map((func) => func.toLowerCase());
+    window.location.href = url.toString();
   }, []);
 
   return (
@@ -62,7 +60,7 @@ function App() {
         {demo === 'normal' ? (
           <MonacoDolphinDBEditor
             dolphinDBLanguageOptions={{
-              docsAnalyser,
+              docs,
               theme,
             }}
             beforeMonacoInit={beforeMonacoEditorInit}
@@ -75,7 +73,7 @@ function App() {
         ) : (
           <MonacoDolphinDBDiffEditor
             dolphinDBLanguageOptions={{
-              docsAnalyser,
+              docs,
               theme,
             }}
             options={{
