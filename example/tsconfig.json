@@ -1,20 +1,20 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "jsx": "react-jsx",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "baseUrl": "./",
-    "paths": {
-      "monaco-dolphindb": ["../src/index.ts"],
-      "monaco-dolphindb/*": ["../src/*"]
-    }
-  },
-  "include": ["*.ts", "*.tsx"]
+    "compilerOptions": {
+        "target": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "ESNext",
+        "jsx": "react-jsx",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "baseUrl": "./",
+        "paths": {
+            "monaco-dolphindb": ["../src/index.ts"],
+            "monaco-dolphindb/*": ["../src/*"]
+        }
+    },
+    "include": ["*.ts", "*.tsx"]
 }
