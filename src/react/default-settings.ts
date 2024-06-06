@@ -6,6 +6,7 @@ export const DEFAULT_SETTINGS: Monaco.editor.IStandaloneEditorConstructionOption
         enabled: false
     },
     
+    fontSize: 16,
     fontFamily: "MyFont, Menlo, 'Ubuntu Mono', Consolas, 'Dejavu Sans Mono', 'Noto Sans Mono', PingFangSC, 'Microsoft YaHei', monospace",
     insertSpaces: true,
     codeLensFontFamily: "MyFont, Menlo, 'Ubuntu Mono', Consolas, 'Dejavu Sans Mono', 'Noto Sans Mono', PingFangSC, 'Microsoft YaHei', monospace",
