@@ -1,1 +1,1 @@
-export const LANGUAGE_ID = 'dolphindb';
+export const LANGUAGE_ID = 'dolphindb'

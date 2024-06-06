@@ -1,15 +1,15 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react'
 
-const useIsUnmounted = () => {
-  const ref = useRef(false);
+function useIsUnmounted () {
+    const ref = useRef(false)
+    
+    useEffect(() => {
+        return () => {
+            ref.current = true
+        }
+    }, [ ])
+    
+    return ref
+}
 
-  useEffect(() => {
-    return () => {
-      ref.current = true;
-    };
-  }, []);
-
-  return ref;
-};
-
-export default useIsUnmounted;
+export default useIsUnmounted

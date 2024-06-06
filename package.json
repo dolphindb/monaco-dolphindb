@@ -1,83 +1,75 @@
 {
-  "name": "monaco-dolphindb",
-  "version": "0.0.21",
-  "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
-  "sideEffects": false,
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+    "name": "monaco-dolphindb",
+    "version": "0.0.21",
+    "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
+    "sideEffects": false,
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./vscode": {
+            "types": "./dist/vscode.d.ts",
+            "import": "./dist/vscode.js"
+        },
+        "./react": {
+            "types": "./dist/react/index.d.ts",
+            "import": "./dist/react/index.js"
+        },
+        "./theme/*": {
+            "types": "./dist/theme/*.d.ts",
+            "import": "./dist/theme/*.js"
+        }
     },
-    "./vscode": {
-      "types": "./dist/vscode.d.ts",
-      "import": "./dist/vscode.js"
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "cd example && vite",
+        "build": "tsc",
+        "copy": "tsc ./tsconfig.node.json && node ./copy.js"
     },
-    "./react": {
-      "types": "./dist/react/index.d.ts",
-      "import": "./dist/react/index.js"
+    "license": "Apache-2.0",
+    "author": "DolphinDB",
+    "homepage": "https://github.com/dolphindb/monaco-dolphindb",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dolphindb/monaco-dolphindb.git"
     },
-    "./theme/*": {
-      "types": "./dist/theme/*.d.ts",
-      "import": "./dist/theme/*.js"
+    "keywords": [
+        "monaco",
+        "monaco-editor",
+        "dolphindb",
+        "language"
+    ],
+    "devDependencies": {
+        "@monaco-editor/react": "^4.6.0",
+        "@types/node": "^20.11.27",
+        "@types/react": "^18.2.65",
+        "@types/react-dom": "^18.2.22",
+        "@vitejs/plugin-react": "^4.2.1",
+        "dolphindb": "^3.0.35",
+        "eslint": "^8.57.0",
+        "monaco-editor": "^0.47.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "typescript": "^5.4.2",
+        "vite": "^5.1.6",
+        "vite-plugin-monaco-editor": "^1.1.0",
+        "vite-plugin-pages": "^0.32.0",
+        "vite-tsconfig-paths": "^4.3.2",
+        "vscode-oniguruma": "^2.0.1",
+        "vscode-textmate": "^9.0.0",
+        "xshell": "^1.0.117"
+    },
+    "peerDependencies": {
+        "dolphindb": "^3.0.35",
+        "monaco-editor": ">=0.47.0",
+        "vscode-oniguruma": "^2.0.1",
+        "vscode-textmate": "^9.0.0"
+    },
+    "optionalDependencies": {
+        "@monaco-editor/react": "^4.6.0"
     }
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "dev": "cd example && vite",
-    "build": "tsc",
-    "clean": "rimraf dist",
-    "prepare": "zx ./scripts/prepare.js"
-  },
-  "license": "Apache-2.0",
-  "author": "DolphinDB",
-  "homepage": "https://github.com/dolphindb/monaco-dolphindb",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dolphindb/monaco-dolphindb.git"
-  },
-  "keywords": [
-    "monaco",
-    "monaco-editor",
-    "dolphindb",
-    "language"
-  ],
-  "devDependencies": {
-    "@monaco-editor/react": "^4.6.0",
-    "@types/node": "^20.11.27",
-    "@types/react": "^18.2.65",
-    "@types/react-dom": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "dolphindb": "^3.0.35",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "monaco-editor": "^0.47.0",
-    "prettier": "^3.2.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rimraf": "^5.0.5",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.6",
-    "vite-plugin-monaco-editor": "^1.1.0",
-    "vite-plugin-pages": "^0.32.0",
-    "vite-tsconfig-paths": "^4.3.2",
-    "vscode-oniguruma": "^2.0.1",
-    "vscode-textmate": "^9.0.0",
-    "zx": "^7.2.3"
-  },
-  "peerDependencies": {
-    "dolphindb": "^2.0.1103",
-    "monaco-editor": ">=0.39.0",
-    "vscode-oniguruma": "^1.7.0 || ^2.0.0",
-    "vscode-textmate": "^9.0.0"
-  },
-  "optionalDependencies": {
-    "@monaco-editor/react": "^4.6.0"
-  }
 }
