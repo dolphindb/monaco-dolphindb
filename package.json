@@ -27,9 +27,9 @@
         "./src/"
     ],
     "scripts": {
-        "dev": "tsc ./tsconfig.node.json && cd example && vite",
+        "dev": "tsc --project ./tsconfig.node.json && cd example && vite",
         "build": "tsc",
-        "copy": "tsc ./tsconfig.node.json && node ./copy.js"
+        "copy": "tsc --project ./tsconfig.node.json && node ./copy.js"
     },
     "license": "Apache-2.0",
     "author": "DolphinDB",
