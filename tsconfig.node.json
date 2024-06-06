@@ -15,6 +15,8 @@
         "incremental": true,
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
+        "rootDir": "./",
+        "outDir": "./",
         "tsBuildInfoFile": "./node_modules/.tsbuildinfo.node.json"
     },
 }
