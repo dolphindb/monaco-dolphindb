@@ -23,7 +23,8 @@
         }
     },
     "files": [
-        "dist"
+        "./dist/",
+        "./src/"
     ],
     "scripts": {
         "dev": "tsc ./tsconfig.node.json && cd example && vite",
