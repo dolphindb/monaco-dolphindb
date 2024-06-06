@@ -23,6 +23,7 @@ export function registerMonacoLanguageProviders (monaco: typeof Monaco) {
     function wrapMarkdownString (md: string) {
         return {
             isTrusted: true,
+            supportHtml:true,
             value: md
         }
     }
