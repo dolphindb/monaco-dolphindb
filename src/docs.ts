@@ -1,5 +1,5 @@
 import type * as Monaco from 'monaco-editor'
-import { DocsAnalyser, parse_signature_help_from_text } from 'dolphindb/docs.js'
+import { type DocsAnalyser, parse_signature_help_from_text } from 'dolphindb/docs.js'
 
 import { LANGUAGE_ID } from './constant.js'
 
@@ -23,7 +23,7 @@ export function registerMonacoLanguageProviders (monaco: typeof Monaco) {
     function wrapMarkdownString (md: string) {
         return {
             isTrusted: true,
-            supportHtml:true,
+            supportHtml: true,
             value: md
         }
     }
