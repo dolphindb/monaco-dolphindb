@@ -1,5 +1,5 @@
 import type * as Monaco from 'monaco-editor'
-import { type IRawTheme } from 'vscode-textmate'
+import type {  IRawTheme } from 'vscode-textmate'
 
 import { type Docs, DocsAnalyser } from 'dolphindb/docs.js'
 
