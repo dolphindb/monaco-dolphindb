@@ -1,4 +1,4 @@
-import { INITIAL, Registry, type IGrammar, type StateStack, type IRawGrammar, IRawTheme } from 'vscode-textmate'
+import { INITIAL, Registry, type IGrammar, type StateStack, type IRawGrammar, type IRawTheme } from 'vscode-textmate'
 
 import { createOnigScanner, createOnigString } from 'vscode-oniguruma'
 import type * as Monaco from 'monaco-editor'
@@ -124,7 +124,7 @@ export async function registerTokenizer (languages: typeof Monaco.languages) {
         },
         
         wordPattern: new RegExp(
-            '(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\\'\\"\\,\\.\\<\\>\\/\\?\\s]+)'
+            '(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\\'\\"\\,\\.\\<\\>\\/\\?\\s]+)!?'
         ),
         
         indentationRules: {

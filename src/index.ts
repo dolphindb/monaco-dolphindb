@@ -1,7 +1,7 @@
 import type * as Monaco from 'monaco-editor'
-import { IRawTheme } from 'vscode-textmate'
+import { type IRawTheme } from 'vscode-textmate'
 
-import { Docs, DocsAnalyser } from 'dolphindb/docs.js'
+import { type Docs, DocsAnalyser } from 'dolphindb/docs.js'
 
 import { LANGUAGE_ID } from './constant.js'
 import { registerTokenizer, setColorMap } from './tokenizer.js'
