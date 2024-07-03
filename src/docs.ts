@@ -8,9 +8,11 @@ const MAX_MATCH_LINES = 30
 
 let docs_provider: DocsProvider
 
-export function set_docs_provider (docs_provider: DocsProvider) {
-    docs_provider = docs_provider
+
+export function set_docs_provider (_docs_provider: DocsProvider) {
+    docs_provider = _docs_provider
 }
+
 
 export function register_monaco_language_providers (monaco: typeof Monaco) {
     const { languages } = monaco

@@ -69,7 +69,7 @@ class TokensProviderCache {
 }
 
 
-export function setColorMap (monaco: typeof Monaco, theme: 'light' | 'dark' | IRawTheme) {
+export function set_color_map (monaco: typeof Monaco, theme: 'light' | 'dark' | IRawTheme) {
     // https://github.com/microsoft/monaco-editor/issues/2239#issuecomment-800868449
     const rawTheme = typeof theme === 'string' ? (theme === 'light' ? theme_light : theme_dark) : theme
     registry.setTheme(rawTheme)
@@ -78,7 +78,7 @@ export function setColorMap (monaco: typeof Monaco, theme: 'light' | 'dark' | IR
 }
 
 
-export async function registerTokenizer (languages: typeof Monaco.languages) {
+export async function register_tokenizer (languages: typeof Monaco.languages) {
     languages.setLanguageConfiguration(LANGUAGE_ID, {
         comments: {
             // symbol used for single line comment. Remove this entry if your language does not support line comments

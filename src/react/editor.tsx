@@ -3,9 +3,10 @@ import { Editor as MonacoEditor, EditorProps, OnMount } from '@monaco-editor/rea
 import * as React from 'react'
 
 import { DEFAULT_SETTINGS } from './default-settings.js'
-import { IUseInitDolphinDBMonacoOptions, useInitDolphinDBMonaco, useDolphinDBMonacoOptions } from './shared.js'
+import { IUseInitDolphinDBMonacoOptions, use_init_dolphindb_monaco, use_dolphindb_monaco_options } from './shared.js'
 
-export interface IMonacoDolphinDBEditorProps extends EditorProps, IUseInitDolphinDBMonacoOptions {}
+
+export interface IMonacoDolphinDBEditorProps extends EditorProps, IUseInitDolphinDBMonacoOptions { }
 
 export function MonacoDolphinDBEditor ({
     onMonacoInit,
@@ -16,14 +17,14 @@ export function MonacoDolphinDBEditor ({
     dolphinDBLanguageOptions,
     ...restProps
 }: IMonacoDolphinDBEditorProps) {
-    useInitDolphinDBMonaco({
+    use_init_dolphindb_monaco({
         beforeMonacoInit,
         onMonacoInit,
         onMonacoInitFailed,
         dolphinDBLanguageOptions
     })
     
-    useDolphinDBMonacoOptions(dolphinDBLanguageOptions)
+    use_dolphindb_monaco_options(dolphinDBLanguageOptions)
     
     const onMount = React.useCallback<OnMount>(
         (editor, monaco) => {
@@ -49,13 +50,13 @@ export function MonacoDolphinDBEditor ({
     )
     
     return <MonacoEditor
-            defaultLanguage='dolphindb'
-            language='dolphindb'
-            options={{
-                ...DEFAULT_SETTINGS,
-                ...options
-            }}
-            onMount={onMount}
-            {...restProps}
-        />
+        defaultLanguage='dolphindb'
+        language='dolphindb'
+        options={{
+            ...DEFAULT_SETTINGS,
+            ...options
+        }}
+        onMount={onMount}
+        {...restProps}
+    />
 }

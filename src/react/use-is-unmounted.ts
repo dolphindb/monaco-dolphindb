@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
 
-function useIsUnmounted () {
+function use_is_unmounted () {
     const ref = useRef(false)
     
     useEffect(() => {
@@ -12,4 +12,4 @@ function useIsUnmounted () {
     return ref
 }
 
-export default useIsUnmounted
+export default use_is_unmounted

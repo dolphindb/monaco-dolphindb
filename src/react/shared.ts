@@ -2,13 +2,14 @@ import { useEffect } from 'react'
 import type * as Monaco from 'monaco-editor'
 import { loader, useMonaco } from '@monaco-editor/react'
 
-import { RegisterDolphinDBLanguageOptions, registerDolphinDBLanguage } from '../index.js'
-import { setColorMap } from '../tokenizer.js'
+import { RegisterDolphinDBLanguageOptions, register_dolphindb_language } from '../index.js'
+import { set_color_map } from '../tokenizer.js'
 
-import useIsUnmounted from './use-is-unmounted.js'
+import use_is_unmounted from './use-is-unmounted.js'
 
-let monacoInitialized = false
-let initMonacoPromise: Promise<typeof Monaco> | null = null
+let monaco_initialized = false
+let init_monaco_promise: Promise<typeof Monaco> | null = null
+
 
 export interface IUseInitDolphinDBMonacoOptions {
     /** 只会触发在 monaco 初始化完成前渲染的组件的，初始化完成后重新渲染组件将不再触发该方法 */
@@ -20,13 +21,13 @@ export interface IUseInitDolphinDBMonacoOptions {
     dolphinDBLanguageOptions: RegisterDolphinDBLanguageOptions
 }
 
-export function useInitDolphinDBMonaco ({
+export function use_init_dolphindb_monaco ({
     beforeMonacoInit,
     onMonacoInit,
     onMonacoInitFailed,
     dolphinDBLanguageOptions
 }: IUseInitDolphinDBMonacoOptions) {
-    const isUnmountedRef = useIsUnmounted()
+    const isUnmountedRef = use_is_unmounted()
     
     function setInitMonacoPromiseThenAndCatch (p: Promise<typeof Monaco>) {
         p.then(monaco => {
@@ -38,48 +39,48 @@ export function useInitDolphinDBMonaco ({
                 onMonacoInitFailed?.(err)
             })
             .finally(() => {
-                initMonacoPromise = null
+                init_monaco_promise = null
             })
     }
     
     // 已完成初始化
-    if (monacoInitialized) 
+    if (monaco_initialized) 
         return
     
     
     // 正在初始化
-    if (initMonacoPromise) {
-        setInitMonacoPromiseThenAndCatch(initMonacoPromise)
+    if (init_monaco_promise) {
+        setInitMonacoPromiseThenAndCatch(init_monaco_promise)
         return
     }
     
     // 未初始化
-    initMonacoPromise = (async () => {
+    init_monaco_promise = (async () => {
         await beforeMonacoInit?.()
         
         const monaco = await loader.init()
         
-        await registerDolphinDBLanguage(monaco, dolphinDBLanguageOptions)
+        await register_dolphindb_language(monaco, dolphinDBLanguageOptions)
         
         await document.fonts.ready
         
-        monacoInitialized = true
+        monaco_initialized = true
         
         return monaco
     })()
     
-    setInitMonacoPromiseThenAndCatch(initMonacoPromise)
+    setInitMonacoPromiseThenAndCatch(init_monaco_promise)
 }
 
 export type IUseDolphinDBMonacoOptions = RegisterDolphinDBLanguageOptions
 
 /** update editor on options change */
-export function useDolphinDBMonacoOptions ({ theme }: IUseDolphinDBMonacoOptions) {
+export function use_dolphindb_monaco_options ({ theme }: IUseDolphinDBMonacoOptions) {
     const monaco = useMonaco()
     
     useEffect(() => {
         if (monaco) 
-            setColorMap(monaco, theme ?? 'light')
+            set_color_map(monaco, theme ?? 'light')
         
     }, [monaco, theme])
 }
