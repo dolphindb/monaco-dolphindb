@@ -1,6 +1,6 @@
 {
     "name": "monaco-dolphindb",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
     "sideEffects": false,
     "type": "module",
@@ -50,7 +50,7 @@
         "@types/react": "^18.3.3",
         "@types/react-dom": "^18.3.0",
         "@vitejs/plugin-react": "^4.3.1",
-        "dolphindb": "^3.0.102",
+        "dolphindb": "^3.0.103",
         "eslint": "^9.6.0",
         "monaco-editor": "^0.50.0",
         "react": "^18.3.1",
