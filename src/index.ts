@@ -1,11 +1,11 @@
 import type * as Monaco from 'monaco-editor'
 import type {  IRawTheme } from 'vscode-textmate'
 
-import { type Docs, DocsAnalyser } from 'dolphindb/docs.js'
+import { type Docs, DocsProvider } from 'dolphindb/docs.js'
 
 import { LANGUAGE_ID } from './constant.js'
 import { registerTokenizer, setColorMap } from './tokenizer.js'
-import { registerMonacoLanguageProviders, setDocsAnalyser } from './docs.js'
+import { register_monaco_language_providers, set_docs_provider } from './docs.js'
 
 
 export interface RegisterDolphinDBLanguageOptions {
@@ -19,8 +19,8 @@ export async function registerDolphinDBLanguage (monaco: typeof Monaco, { docs, 
     
     languages.register({ id: LANGUAGE_ID })
     
-    setDocsAnalyser(new DocsAnalyser(docs))
-    registerMonacoLanguageProviders(monaco)
+    set_docs_provider(new DocsProvider(docs))
+    register_monaco_language_providers(monaco)
     
     await registerTokenizer(languages)
     

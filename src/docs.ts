@@ -1,26 +1,25 @@
 import type * as Monaco from 'monaco-editor'
-import { type DocsAnalyser, parse_signature_help_from_text } from 'dolphindb/docs.js'
+import { type DocsProvider } from 'dolphindb/docs.js'
 
 import { LANGUAGE_ID } from './constant.js'
 
 /** 最大搜索行数 */
 const MAX_MATCH_LINES = 30
 
-let docsAnalyser: DocsAnalyser
+let docs_provider: DocsProvider
 
-export function setDocsAnalyser (newDocsAnalyser: DocsAnalyser) {
-    docsAnalyser = newDocsAnalyser
+export function set_docs_provider (docs_provider: DocsProvider) {
+    docs_provider = docs_provider
 }
 
-export function registerMonacoLanguageProviders (monaco: typeof Monaco) {
+export function register_monaco_language_providers (monaco: typeof Monaco) {
     const { languages } = monaco
     const { CompletionItemKind } = languages
     
-    if (!docsAnalyser) 
-        throw new Error('You must set docsAnalyser first')
+    if (!docs_provider)
+        throw new Error('You must set docs_provider first')
     
-    
-    function wrapMarkdownString (md: string) {
+    function wrap_markdown_string (md: string) {
         return {
             isTrusted: true,
             supportHtml: true,
@@ -32,7 +31,7 @@ export function registerMonacoLanguageProviders (monaco: typeof Monaco) {
         provideCompletionItems (model, pos) {
             const keyword = model.getWordAtPosition(pos)?.word ?? ''
             
-            const { functions, constants, keywords } = docsAnalyser.search_completion_items(keyword)
+            const { functions, constants, keywords } = docs_provider.complete(keyword)
             
             return {
                 suggestions: [
@@ -56,10 +55,10 @@ export function registerMonacoLanguageProviders (monaco: typeof Monaco) {
         },
         
         resolveCompletionItem (item) {
-            const md = docsAnalyser.get_function_markdown(item.label as string)
+            const md = docs_provider.get_function_markdown(item.label as string)
             
             if (md) 
-                item.documentation = wrapMarkdownString(md)
+                item.documentation = wrap_markdown_string(md)
             
             
             return item
@@ -73,15 +72,14 @@ export function registerMonacoLanguageProviders (monaco: typeof Monaco) {
             if (!word) 
                 return
             
-            
-            const md = docsAnalyser.get_function_markdown(word.word)
+            const md = docs_provider.get_function_markdown(word.word)
             
             if (!md) 
                 return
             
             
             return {
-                contents: [wrapMarkdownString(md)]
+                contents: [wrap_markdown_string(md)]
             }
         }
     })
@@ -97,10 +95,9 @@ export function registerMonacoLanguageProviders (monaco: typeof Monaco) {
                 endColumn: pos.column
             })
             
-            const result = parse_signature_help_from_text(text, docsAnalyser)
+            const result = docs_provider.get_signature_help(text)
             if (!result) 
                 return
-            
             
             const { signature, active_parameter, documentation_md } = result
             
@@ -114,7 +111,7 @@ export function registerMonacoLanguageProviders (monaco: typeof Monaco) {
                         {
                             label: signature.full,
                             activeParameter: active_parameter,
-                            documentation: documentation_md ? wrapMarkdownString(documentation_md) : undefined,
+                            documentation: documentation_md ? wrap_markdown_string(documentation_md) : undefined,
                             parameters: signature.parameters.map(param => ({
                                 label: param.full
                             }))
