@@ -1,6 +1,6 @@
 import * as Monaco from 'monaco-editor'
 import { loadWASM } from 'vscode-oniguruma'
-import { registerDolphinDBLanguage } from 'monaco-dolphindb'
+import { register_dolphindb_language } from 'monaco-dolphindb'
 
 const settings: Monaco.editor.IStandaloneEditorConstructionOptions = {
     insertSpaces: true,
@@ -79,7 +79,7 @@ const settings: Monaco.editor.IStandaloneEditorConstructionOptions = {
 
 await loadWASM(await fetch('/onig.wasm'))
 
-await registerDolphinDBLanguage(Monaco, { docs: await (await fetch('/docs.zh.json')).json() })
+await register_dolphindb_language(Monaco, { docs: await (await fetch('/docs.zh.json')).json() })
 
 const editor = Monaco.editor.create(document.getElementById('root')!, {
     value: '1 + 2',

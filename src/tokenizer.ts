@@ -57,13 +57,19 @@ class TokensProviderCache {
         // Failure to do so means that the LanguageId cannot be read back later,
         // which can cause other Monaco features, such as "Toggle Line Comment",
         // to fail.
-        const promise = this.registry.loadGrammarWithConfiguration(scopeName, encodedLanguageId, { }).then(grammar => {
+        const promise = this.registry.loadGrammarWithConfiguration(
+            scopeName, 
+            encodedLanguageId,
+            { balancedBracketSelectors: ['(', '[', '{'] }
+        ).then(grammar => {
             if (grammar)
                 return grammar
             else
                 throw Error(`failed to load grammar for ${scopeName}`)
         })
+        
         this.scopeNameToGrammar.set(scopeName, promise)
+        
         return promise
     }
 }
@@ -90,9 +96,9 @@ export async function register_tokenizer (languages: typeof Monaco.languages) {
         
         // symbols used as brackets
         brackets: [
-            ['{', '}'],
+            ['(', ')'],
             ['[', ']'],
-            ['(', ')']
+            ['{', '}'],
         ],
         
         // symbols that are auto closed when typing

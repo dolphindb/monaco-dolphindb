@@ -1,6 +1,6 @@
 {
     "name": "monaco-dolphindb",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
     "sideEffects": false,
     "type": "module",
@@ -46,23 +46,23 @@
     ],
     "devDependencies": {
         "@monaco-editor/react": "^4.6.0",
-        "@types/node": "^20.14.9",
+        "@types/node": "^20.14.11",
         "@types/react": "^18.3.3",
         "@types/react-dom": "^18.3.0",
         "@vitejs/plugin-react": "^4.3.1",
-        "dolphindb": "^3.0.103",
-        "eslint": "^9.6.0",
+        "dolphindb": "^3.0.106",
+        "eslint": "^9.7.0",
         "monaco-editor": "^0.50.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "typescript": "^5.5.3",
-        "vite": "^5.3.2",
+        "vite": "^5.3.4",
         "vite-plugin-monaco-editor": "^1.1.0",
         "vite-plugin-pages": "^0.32.3",
         "vite-tsconfig-paths": "^4.3.2",
         "vscode-oniguruma": "^2.0.1",
-        "vscode-textmate": "^9.0.0",
-        "xshell": "^1.0.155"
+        "vscode-textmate": "^9.1.0",
+        "xshell": "^1.0.157"
     },
     "peerDependencies": {
         "dolphindb": "^3.0.35",
