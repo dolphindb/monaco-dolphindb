@@ -13,9 +13,3 @@
 .editor-wrapper {
     height: calc(100vh - 37px);
 }
-
-/* 括号高亮样式 */
-.monaco-editor, .monaco-diff-editor, .monaco-component {
-    --vscode-editorBracketMatch-background: #f9a2ffab !important;
-    --vscode-editorBracketMatch-border: #ff0000 !important;
-}
