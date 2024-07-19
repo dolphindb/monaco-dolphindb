@@ -64,10 +64,13 @@ function App () {
                         }}
                         beforeMonacoInit={beforeMonacoEditorInit}
                         options={{
-                            acceptSuggestionOnEnter: 'on'
+                            fontSize: 20
                         }}
                         theme={theme === 'light' ? 'light' : 'vs-dark'}
-                        defaultValue='1 + 2'
+                        defaultValue={
+                            '1 + 1\n' +
+                            'aaa()\n'
+                        }
                     />
                 ) : (
                     <MonacoDolphinDBDiffEditor
@@ -90,3 +93,13 @@ function App () {
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
+
+
+function pause () {
+    setTimeout(() => {
+        debugger
+    }, 3000)
+}
+
+;(window as any).pause = pause
+

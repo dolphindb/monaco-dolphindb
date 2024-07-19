@@ -13,6 +13,11 @@ export const DEFAULT_SETTINGS: Monaco.editor.IStandaloneEditorConstructionOption
     folding: true,
     largeFileOptimizations: true,
     matchBrackets: 'always',
+    bracketPairColorization: {
+        enabled: false
+    },
+    // @ts-ignore 上面的配置只有这样写才生效
+    'bracketPairColorization.enabled': false,
     smoothScrolling: false,
     suggest: {
         insertMode: 'replace',
