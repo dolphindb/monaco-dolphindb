@@ -27,7 +27,7 @@
         "./src/"
     ],
     "scripts": {
-        "dev": "tsc --project ./tsconfig.node.json && node ./copy.js && cd example && vite",
+        "dev": "node ./copy.ts && cd example && vite",
         "build": "tsc"
     },
     "license": "Apache-2.0",
