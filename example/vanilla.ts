@@ -1,8 +1,8 @@
-import * as Monaco from 'monaco-editor'
+import * as monaco from 'monaco-editor'
 import { loadWASM } from 'vscode-oniguruma'
 import { register_dolphindb_language } from 'monaco-dolphindb'
 
-const settings: Monaco.editor.IStandaloneEditorConstructionOptions = {
+const settings: monaco.editor.IStandaloneEditorConstructionOptions = {
     insertSpaces: true,
     folding: true,
     largeFileOptimizations: true,
@@ -79,12 +79,13 @@ const settings: Monaco.editor.IStandaloneEditorConstructionOptions = {
 
 await loadWASM(await fetch('/onig.wasm'))
 
-await register_dolphindb_language(Monaco, { docs: await (await fetch('/docs.zh.json')).json() })
+await register_dolphindb_language(monaco, { docs: await (await fetch('/docs.zh.json')).json() })
 
-const editor = Monaco.editor.create(document.getElementById('root')!, {
+const editor = monaco.editor.create(document.getElementById('root')!, {
     value: '1 + 2',
     language: 'dolphindb',
     ...settings
 })
  
-;(editor.getContribution('editor.contrib.suggestController') as any).widget.value._setDetailsVisible(true)
+;(editor.getContribution('editor.contrib.suggestController') as any)
+    .widget.value._setDetailsVisible(true)

@@ -9,3 +9,5 @@ node_modules/
 /example/public/onig.wasm
 /example/public/docs.en.json
 /example/public/docs.zh.json
+
+!/eslint.config.js
