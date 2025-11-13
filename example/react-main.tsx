@@ -1,5 +1,5 @@
 import { loadWASM } from 'vscode-oniguruma'
-import { MonacoDolphinDBDiffEditor, MonacoDolphinDBEditor } from 'monaco-dolphindb/react'
+import { MonacoDolphinDBDiffEditor, MonacoDolphinDBEditor } from 'donaco/react'
 import * as monaco from 'monaco-editor'
 import { loader } from '@monaco-editor/react'
 import * as ReactDOM from 'react-dom/client'

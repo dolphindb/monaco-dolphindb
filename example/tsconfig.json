@@ -12,8 +12,8 @@
         "noEmit": true,
         "baseUrl": "./",
         "paths": {
-            "monaco-dolphindb": ["../src/index.ts"],
-            "monaco-dolphindb/*": ["../src/*"]
+            "donaco": ["../src/index.ts"],
+            "donaco/*": ["../src/*"]
         }
     },
     "include": ["*.ts", "*.tsx"]

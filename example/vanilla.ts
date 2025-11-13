@@ -1,6 +1,6 @@
 import * as monaco from 'monaco-editor'
 import { loadWASM } from 'vscode-oniguruma'
-import { register_dolphindb_language } from 'monaco-dolphindb'
+import { register_dolphindb_language } from 'donaco'
 
 const settings: monaco.editor.IStandaloneEditorConstructionOptions = {
     insertSpaces: true,

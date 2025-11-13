@@ -1,6 +1,6 @@
 {
     "name": "donaco",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "Support DolphinDB language in Monaco Editor (syntax highlight, completions, docs)",
     "sideEffects": false,
     "type": "module",

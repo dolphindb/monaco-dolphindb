@@ -41,7 +41,7 @@ export function MonacoDolphinDBEditor ({
                  
                 (editor.getContribution('editor.contrib.suggestController') as any).widget.value._setDetailsVisible(true)
             } catch (err) {
-                console.warn('[monaco-dolphindb/react] Failed to set suggest details visible', err)
+                console.warn('[donaco/react] Failed to set suggest details visible', err)
             }
             
             onMountProp?.(editor, monaco)
